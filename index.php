@@ -4,15 +4,23 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-$xml = simplexml_load_file('http://www2.e-solat.gov.my/xml/today/?'.$_SERVER['QUERY_STRING']);
-$masa = (string) $xml->channel->children('http://purl.org/dc/elements/1.1/')->date;
-$tempat = (string) $xml->channel->link;
-$waktusolat = array();
+// Get data
+$string = file_get_contents('https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period=today&'.$_SERVER['QUERY_STRING']);
+$json = json_decode($string, true);
 
-foreach ($xml->channel->item as $item) {
-    $waktusolat[(string) $item->title] = (string) $item->description;
-}
+// Process data
+$masa = $json['serverTime'];
+$tempat = $json['zone'];
+$waktusolat = array(
+    "Subuh" => $json['prayerTime'][0]['fajr'],
+    "Syuruk" => $json['prayerTime'][0]['syuruk'],
+    "Zuhur" => $json['prayerTime'][0]['dhuhr'],
+    "Asar" => $json['prayerTime'][0]['asr'],
+    "Maghrib" => $json['prayerTime'][0]['maghrib'],
+    "Isyak" => $json['prayerTime'][0]['isha']
+);
 
+// Display data in ICS format
 date_default_timezone_set('Asia/Kuala_Lumpur');
 $date = gmdate('Ymd\THis\Z', strtotime(substr($masa, 0, 10)));
 ?>

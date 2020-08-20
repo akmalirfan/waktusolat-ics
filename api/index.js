@@ -35,11 +35,10 @@ const write = json => {
     let os = require('os')
     const masa = json.serverTime
     let date = gmdate(new Date(masa.slice(0, 10) + 'GMT+8'))
-    let body = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:https://github.com/akmalirfan/waktusolatics
-X-WR-CALNAME:Waktu Solat ${json.zone}
-`
+    let body = `BEGIN:VCALENDAR\r\n` +
+                `VERSION:2.0\r\n` +
+                `PRODID:https://github.com/akmalirfan/waktusolatics\r\n` +
+                `X-WR-CALNAME:Waktu Solat ${json.zone}\r\n`
 
     waktusolat = {
         Subuh: json.prayerTime[0].fajr,
@@ -56,14 +55,13 @@ X-WR-CALNAME:Waktu Solat ${json.zone}
         let waktu = gmdate(new Date(`${masa.slice(0, 10)} ${waktusolat[ws]} GMT+8`))
         let waktuend = gmdate(new Date(`${masa.slice(0, 10)} ${waktusolat[ws]} GMT+7`))
 
-        body += `BEGIN:VEVENT
-UID:${ws}${date}@${os.hostname()}
-DTSTAMP:${date}
-DTSTART:${waktu}
-DTEND:${waktuend}
-SUMMARY:${ws}
-END:VEVENT
-`
+        body += `BEGIN:VEVENT\r\n` +
+                `UID:${ws}${date}@${os.hostname()}\r\n` +
+                `DTSTAMP:${date}\r\n` +
+                `DTSTART:${waktu}\r\n` +
+                `DTEND:${waktuend}\r\n` +
+                `SUMMARY:${ws}\r\n` +
+                `END:VEVENT\r\n`
     }
 
     body += `END:VCALENDAR`

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Waktu Solat ICS</title>
+    <!-- <link rel="shortcut icon" type="image/png" href="icon.png"/> -->
+</head>
+<body onload="updateLink()">
+    <label>Pilih kawasan:
+        <select id="zone" name="zone" onchange="updateLink()">
+            <optgroup label="Kedah">
+                <option value="KDH01">Kota Setar, Kubang Pasu, Pokok Sena</option>
+                <option value="KDH02">Pendang, Kuala Muda, Yan</option>
+                <option value="KDH03">Padang Terap, Sik</option>
+                <option value="KDH04">Baling</option>
+                <option value="KDH05">Kulim, Bandar Baharu</option>
+                <option value="KDH06">Langkawi</option>
+                <option value="KDH07">Gunung Jerai</option>
+            </optgroup>
+            <optgroup label="Pulau Pinang">
+                <option value="PNG01">Seluruh Pulau Pinang</option>
+            </optgroup>
+            <optgroup label="Perak">
+                <option value="PRK01">Tapah, Slim River, Tanjung Malim</option>
+                <option value="PRK02">Kuala Kangsar, Sg. Siput (Daerah Kecil), Ipoh, Batu Gajah, Kampar</option>
+                <option value="PRK03">Lenggong, Pengkalan Hulu, Grik</option>
+                <option value="PRK04">Temenggor, Belum</option>
+                <option value="PRK05">Kg Gajah, Teluk Intan, Bagan Datuk, Seri Iskandar, Beruas, Parit, Lumut, Sitiawan, Pulau Pangkor</option>
+                <option value="PRK06">Selama, Taiping, Bagan Serai, Parit Buntar</option>
+                <option value="PRK07">Bukit Larut</option>
+            </optgroup>
+            <optgroup label="Selangor">
+                <option value="SGR01">Gombak,H.Selangor,Rawang, H.Langat,Sepang,Petaling, S.Alam</option>
+                <option value="SGR02">Sabak Bernam, Kuala Selangor</option>
+                <option value="SGR03">Klang, Kuala Langat</option>
+            </optgroup>
+            <optgroup label="Wilayah Persekutuan">
+                <option value="WLY01" selected>Kuala Lumpur, Putrajaya</option>
+                <option value="WLY02">Labuan</option>
+            </optgroup>
+            <optgroup label="Negeri Sembilan">
+                <option value="NGS01">Jempol, Tampin</option>
+                <option value="NGS02">Port Dickson, Seremban, Kuala Pilah, Jelebu, Rembau</option>
+            </optgroup>
+            <optgroup label="Melaka">
+                <option value="MLK01">Seluruh Melaka</option>
+            </optgroup>
+            <optgroup label="Johor">
+                <option value="JHR01">Pulau Aur dan Pulau Pemanggil</option>
+                <option value="JHR02">Johor Bahru, Kota Tinggi, Mersing</option>
+                <option value="JHR03">Kluang dan Pontian</option>
+                <option value="JHR04">Batu Pahat, Muar, Segamat, Gemas</option>
+            </optgroup>
+            <optgroup label="Perlis">
+                <option value="PLS01">Kangar, Padang Besar, Arau</option>
+            </optgroup>
+            <optgroup label="Pahang">
+                <option value="PHG01">Pulau Tioman</option>
+                <option value="PHG02">Kuantan, Pekan, Rompin, Muadzam Shah</option>
+                <option value="PHG03">Maran, Jengka, Chenor, Temerloh, Bera, Jerantut</option>
+                <option value="PHG04">Bentong, Raub, Lipis</option>
+                <option value="PHG05">Genting Sempah, Janda Baik, Bukit Tinggi</option>
+                <option value="PHG06">Bukit Fraser, Genting Highlands, Cameron Highlands</option>
+            </optgroup>
+            <optgroup label="Kelantan">
+                <option value="KTN01">K.Bharu, Bachok, Pasir Puteh, Tumpat, Pasir Mas, Tnh. Merah, Machang, Kuala Krai, Mukim Chiku</option>
+                <option value="KTN02">Jeli, Gua Musang (Galas, Bertam)</option>
+            </optgroup>
+            <optgroup label="Terengganu">
+                <option value="TRG01">Kuala Terengganu, Marang, Kuala Nerus</option>
+                <option value="TRG02">Besut, Setiu</option>
+                <option value="TRG03">Hulu Terengganu</option>
+                <option value="TRG04">Kemaman, Dungun</option>
+            </optgroup>
+            <optgroup label="Sabah">
+                <option value="SBH01">Bahagian Sandakan (Timur), Bukit Garam, Semawang, Temanggong, Tambisan, Bandar Sandakan, Sukau</option>
+                <option value="SBH02">Beluran, Telupid, Pinangah, Terusan, Kuamut, Bahagian Sandakan (Barat)</option>
+                <option value="SBH03">Lahad Datu, Silabukan, Kunak, Sahabat, Semporna, Tungku, Bahagian Tawau  (Timur)</option>
+                <option value="SBH04">Bandar Tawau, Balong, Merotai, Kalabakan, Bahagian Tawau (Barat)</option>
+                <option value="SBH05">Kudat, Kota Marudu, Pitas, Pulau Banggi, Bahagian Kudat</option>
+                <option value="SBH06">Gunung Kinabalu</option>
+                <option value="SBH07">Kota Kinabalu, Ranau, Kota Belud, Tuaran, Penampang, Papar, Putatan, Bahagian Pantai Barat</option>
+                <option value="SBH08">Pensiangan, Keningau, Tambunan, Nabawan, Bahagian Pedalaman (Atas)</option>
+                <option value="SBH09">Beaufort, Kuala Penyu, Sipitang, Tenom, Long Pa Sia, Membakut, Weston, Bahagian Pedalaman (Bawah)</option>
+            </optgroup>
+            <optgroup label="Sarawak">
+                <option value="SWK01">Limbang, Lawas, Sundar, Trusan</option>
+                <option value="SWK02">Miri, Niah, Bekenu, Sibuti, Marudi</option>
+                <option value="SWK03">Pandan, Belaga, Suai, Tatau, Sebauh, Bintulu</option>
+                <option value="SWK04">Sibu, Mukah, Dalat, Song, Igan, Oya, Balingian, Kanowit, Kapit</option>
+                <option value="SWK05">Sarikei, Matu, Julau, Rajang, Daro, Bintangor, Belawai</option>
+                <option value="SWK06">Lubok Antu, Sri Aman, Roban, Debak, Kabong, Lingga, Engkelili, Betong, Spaoh, Pusa, Saratok</option>
+                <option value="SWK07">Serian, Simunjan, Samarahan, Sebuyau, Meludam</option>
+                <option value="SWK08">Kuching, Bau, Lundu, Sematan</option>
+                <option value="SWK09">Zon Khas (Kampung Patarikan)</option>
+            </optgroup>
+        </select>
+    </label>
+    <a id="ics-link" href="api"></a>
+    <input id="textbox" type="text"/>
+    <button onclick="navigator.clipboard.writeText(document.querySelector('#textbox').value)">Salin</button>
+
+    <script>
+        const updateLink = () => {
+            const ics_link = document.querySelector('#ics-link').href
+            document.querySelector('#textbox').value = `${ics_link}?zone=${document.querySelector('#zone').value}`
+        }
+    </script>
+</body>
+</html>

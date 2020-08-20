@@ -1,0 +1,20 @@
+{
+  "name": "waktusolat-ics",
+  "version": "1.0.0",
+  "description": "Returns prayer times in iCalendar format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akmalirfan/waktusolat-ics.git"
+  },
+  "author": "Akmal Irfan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akmalirfan/waktusolat-ics/issues"
+  },
+  "homepage": "https://github.com/akmalirfan/waktusolat-ics#readme"
+}

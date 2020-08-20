@@ -1,6 +1,6 @@
 module.exports = async(req, res) => {
     const https = require('https')
-    const url = 'https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period=today&zone=SGR01'
+    const url = `https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period=today&zone=${req.query.zone}`
 
     https.get(url, r => {
         r.setEncoding('utf8')

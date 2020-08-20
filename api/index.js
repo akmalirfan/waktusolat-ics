@@ -10,6 +10,7 @@ module.exports = async(req, res) => {
         })
         r.on('end', () => {
             json = JSON.parse(body)
+            res.setHeader('content-type', 'text/plain')
             res.send(write(json))
         })
     })

@@ -17,18 +17,14 @@ module.exports = async(req, res) => {
 }
 
 const gmdate = dt => {
-    const dateTimeFormat = new Intl.DateTimeFormat('en', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    })
-    const [{ value: month },,{ value: day },,{ value: year },,{ value: hour },,{ value: minute },,{ value: second }] = dateTimeFormat.formatToParts(dt)
+    const year = dt.getUTCFullYear()
+    const month = `0${dt.getUTCMonth() + 1}`.slice(-2)
+    const day = `0${dt.getUTCDate()}`.slice(-2)
+    const hour = `0${dt.getUTCHours()}`.slice(-2)
+    const minute = `0${dt.getUTCMinutes()}`.slice(-2)
+    const second = `0${dt.getUTCSeconds()}`.slice(-2)
 
-    // return `${year}${month}${day}T${hour}${minute}${second}Z`
-    return `${dt.getUTCFullYear()}${("0" + (dt.getUTCMonth() + 1)).slice(-2)}${("0" + dt.getUTCDate()).slice(-2)}T${("0" + dt.getUTCHours()).slice(-2)}${("0" + dt.getUTCMinutes()).slice(-2)}${("0" + dt.getUTCSeconds()).slice(-2)}Z`
+    return `${year}${month}${day}T${hour}${minute}${second}Z`
 }
 
 const write = json => {

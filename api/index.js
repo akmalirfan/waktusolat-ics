@@ -16,6 +16,25 @@ module.exports = async(req, res) => {
     })
 }
 
+const bulan = {
+    Jan: 1,
+    Feb: 2,
+    Mac: 3,
+    Apr: 4,
+    Mei: 5,
+    Jun: 6,
+    Jul: 7,
+    Ogo: 8,
+    Sep: 9,
+    Okt: 10,
+    Nov: 11,
+    Dis: 12
+}
+
+const getBulan = b => `0${bulan[b.slice(0, 3)]}`.slice(-2)
+
+const month2Num = month => month.replace(/[A-Za-z]+/, getBulan)
+
 const gmdate = dt => {
     const year = dt.getUTCFullYear()
     const month = `0${dt.getUTCMonth() + 1}`.slice(-2)
@@ -48,7 +67,7 @@ const write = (json, days = 1) => {
 
     for (let i = 0; i < days; i++) {
         for (const ws in waktusolat) {
-            let tarikh = json.prayerTime[i].date
+            let tarikh = month2Num(json.prayerTime[i].date)
             let date = gmdate(new Date(tarikh + 'GMT+8'))
             let waktu = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+8`))
             let waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+7`))

@@ -35,6 +35,8 @@ const getBulan = b => `0${bulan[b.slice(0, 3)]}`.slice(-2)
 
 const month2Num = month => month.replace(/[A-Za-z]+/, getBulan)
 
+const date2Ymd = date => `${date.slice(-4)}-${date.slice(-7, -5)}-${date.slice(0, 2)}`
+
 const gmdate = dt => {
     const year = dt.getUTCFullYear()
     const month = `0${dt.getUTCMonth() + 1}`.slice(-2)
@@ -67,7 +69,7 @@ const write = (json, days = 1) => {
 
     for (let i = 0; i < days; i++) {
         for (const ws in waktusolat) {
-            let tarikh = month2Num(json.prayerTime[i].date)
+            let tarikh = date2Ymd(month2Num(json.prayerTime[i].date))
             let date = gmdate(new Date(tarikh + 'GMT+8'))
             let waktu = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+8`))
             let waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+7`))

@@ -52,7 +52,7 @@ const write = (json, days = 1) => {
     let os = require('os')
     let body = `BEGIN:VCALENDAR\r\n` +
                 `VERSION:2.0\r\n` +
-                `PRODID:https://github.com/akmalirfan/waktusolatics\r\n` +
+                `PRODID:https://github.com/akmalirfan/waktusolat-ics\r\n` +
                 `X-WR-CALNAME:Waktu Solat ${json.zone}\r\n`
 
     let waktusolat = {

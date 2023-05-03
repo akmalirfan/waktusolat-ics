@@ -49,7 +49,6 @@ const gmdate = dt => {
 }
 
 const write = (json, days = 1) => {
-    let os = require('os')
     let body = `BEGIN:VCALENDAR\r\n` +
                 `VERSION:2.0\r\n` +
                 `PRODID:https://github.com/akmalirfan/waktusolat-ics\r\n` +
@@ -75,7 +74,7 @@ const write = (json, days = 1) => {
             let waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+7`))
 
             body += `BEGIN:VEVENT\r\n` +
-                    `UID:${ws}${date}@${os.hostname()}\r\n` +
+                    `UID:${ws}${date}@$waktusolatics\r\n` +
                     `DTSTAMP:${date}\r\n` +
                     `DTSTART:${waktu}\r\n` +
                     `DTEND:${waktuend}\r\n` +

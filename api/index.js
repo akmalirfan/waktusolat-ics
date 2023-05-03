@@ -74,7 +74,7 @@ const write = (json, days = 1) => {
             let waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+7`))
 
             body += `BEGIN:VEVENT\r\n` +
-                    `UID:${ws}${date}@$waktusolatics\r\n` +
+                    `UID:${ws}${date}@waktusolatics\r\n` +
                     `DTSTAMP:${date}\r\n` +
                     `DTSTART:${waktu}\r\n` +
                     `DTEND:${waktuend}\r\n` +

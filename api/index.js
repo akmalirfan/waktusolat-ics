@@ -19,16 +19,16 @@ module.exports = async(req, res) => {
 const bulan = {
     Jan: 1,
     Feb: 2,
-    Mac: 3,
+    Mar: 3,
     Apr: 4,
-    Mei: 5,
+    May: 5,
     Jun: 6,
     Jul: 7,
-    Ogo: 8,
+    Aug: 8,
     Sep: 9,
-    Okt: 10,
+    Oct: 10,
     Nov: 11,
-    Dis: 12
+    Dec: 12
 }
 
 const getBulan = b => `0${bulan[b.slice(0, 3)]}`.slice(-2)

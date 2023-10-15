@@ -82,6 +82,8 @@ const write = (json, days = 1) => {
                 waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat['Asar']]} GMT+8`))
             } else if (ws === 'Asar') {
                 waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat['Maghrib']]} GMT+8`))
+            } else if (ws === 'Maghrib') {
+                waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat['Isyak']]} GMT+8`))
             }
 
             body += `BEGIN:VEVENT\r\n` +

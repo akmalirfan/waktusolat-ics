@@ -68,10 +68,21 @@ const write = (json, days = 1) => {
 
     for (let i = 0; i < days; i++) {
         for (const ws in waktusolat) {
+            // Langkau waktu syuruk
+            if (ws === 'Syuruk') continue
+
             let tarikh = date2Ymd(month2Num(json.prayerTime[i].date))
             let date = gmdate(new Date(tarikh + 'GMT+8'))
             let waktu = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+8`))
             let waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat[ws]]} GMT+7`))
+
+            if (ws === 'Subuh') {
+                waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat['Syuruk']]} GMT+8`))
+            } else if (ws === 'Zuhur') {
+                waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat['Asar']]} GMT+8`))
+            } else if (ws === 'Asar') {
+                waktuend = gmdate(new Date(`${tarikh} ${json.prayerTime[i][waktusolat['Maghrib']]} GMT+8`))
+            }
 
             body += `BEGIN:VEVENT\r\n` +
                     `UID:${ws}${date}@waktusolatics\r\n` +

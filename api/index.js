@@ -92,6 +92,7 @@ const write = (json, days = 1) => {
                     `DTSTART:${waktu}\r\n` +
                     `DTEND:${waktuend}\r\n` +
                     `SUMMARY:${ws}\r\n` +
+                    `DESCRIPTION:${json.prayerTime[i].hijri} | ${json.bearing}\r\n` +
                     `END:VEVENT\r\n`
         }
     }

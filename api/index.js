@@ -49,6 +49,10 @@ const gmdate = dt => {
 }
 
 const write = (json, days = 1) => {
+    const bearing = json.bearing
+        .replace('&#176;', '°')
+        .replace('&#8242;', '′')
+        .replace('&#8243;', '″')
     let body = `BEGIN:VCALENDAR\r\n` +
                 `VERSION:2.0\r\n` +
                 `PRODID:https://github.com/akmalirfan/waktusolat-ics\r\n` +
@@ -92,7 +96,7 @@ const write = (json, days = 1) => {
                     `DTSTART:${waktu}\r\n` +
                     `DTEND:${waktuend}\r\n` +
                     `SUMMARY:${ws}\r\n` +
-                    `DESCRIPTION:${json.prayerTime[i].hijri} | ${json.bearing}\r\n` +
+                    `DESCRIPTION:${json.prayerTime[i].hijri} | ${bearing}\r\n` +
                     `END:VEVENT\r\n`
         }
     }

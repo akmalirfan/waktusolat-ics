@@ -16,20 +16,17 @@ module.exports = async(req, res) => {
     })
 }
 
-const bulan = {
-    Jan: 1,
-    Feb: 2,
-    Mar: 3,
-    Apr: 4,
-    May: 5,
-    Jun: 6,
-    Jul: 7,
-    Aug: 8,
-    Sep: 9,
-    Oct: 10,
-    Nov: 11,
-    Dec: 12
-}
+const bulan = {};
+
+['ms', 'en'].forEach(locale => {
+    for (let m = 0; m < 12; m++) {
+        const formatter = new Intl.DateTimeFormat(locale, { month: 'short' })
+        const dummyDate = new Date(2026, m, 15)
+        const localizedMonth = formatter.format(dummyDate)
+
+        bulan[localizedMonth] = m
+    }
+})
 
 const getBulan = b => `0${bulan[b.slice(0, 3)]}`.slice(-2)
 

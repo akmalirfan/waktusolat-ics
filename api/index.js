@@ -19,12 +19,12 @@ module.exports = async(req, res) => {
 const bulan = {};
 
 ['ms', 'en'].forEach(locale => {
-    for (let m = 1; m <= 12; m++) {
+    for (let m = 0; m < 12; m++) {
         const formatter = new Intl.DateTimeFormat(locale, { month: 'short' })
         const dummyDate = new Date(2026, m, 15)
         const localizedMonth = formatter.format(dummyDate)
 
-        bulan[localizedMonth] = m
+        bulan[localizedMonth] = m + 1
     }
 })
 
